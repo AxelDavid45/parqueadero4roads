@@ -6,24 +6,19 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateVehiclesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('vehicles', function (Blueprint $table) {
-            $table->id();
+            $table->string('lice_plate');
+            $table->string('brand');
+            $table->string('type');
+            $table->string('owner_id');
             $table->timestamps();
+            $table->primary('lice_plate');
+            $table->foreign('owner_id')->references('identity_card')->on('owners');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('vehicles');
