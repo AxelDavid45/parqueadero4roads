@@ -19,5 +19,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/vehicle/brand', [VehicleController::class, 'countBrands']);
+Route::get('vehicle/brand', [VehicleController::class, 'countBrands']);
 Route::apiResource('vehicle', VehicleController::class);

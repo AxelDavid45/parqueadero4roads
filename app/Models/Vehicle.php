@@ -15,7 +15,8 @@ class Vehicle extends Model
     public $incrementing = false;
     protected $keyType = 'string';
 
-    public function getBrandAttribute($value) {
+    public function getBrandAttribute($value): string
+    {
         return ucfirst($value);
     }
 
