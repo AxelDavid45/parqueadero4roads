@@ -8,7 +8,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class OwnerController extends TestCase
+class OwnerControllerTest extends TestCase
 {
     use RefreshDatabase;
     private $owner;
