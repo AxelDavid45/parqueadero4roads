@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\API\VehicleController;
+use \App\Http\Controllers\API\OwnerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +15,10 @@ use \App\Http\Controllers\API\VehicleController;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::prefix('vehicle')->group(function () {
+    Route::get('/brand', [VehicleController::class, 'countBrands']);
+    Route::post('/', [VehicleController::class, 'store']);
+    Route::get('/{licensePlate}', [VehicleController::class, 'showByLicense']);
+    Route::get('/owner/{name}', [OwnerController::class, 'showByName']);
+    Route::get('/owner/identity/{identity}', [OwnerController::class, 'showByIdentity']);
 });
-
-Route::get('vehicle/brand', [VehicleController::class, 'countBrands']);
-Route::apiResource('vehicle', VehicleController::class);

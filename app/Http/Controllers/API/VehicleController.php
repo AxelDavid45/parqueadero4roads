@@ -40,15 +40,10 @@ class VehicleController extends Controller
         return response()->json(['message' => 'Vehicle already exists'], 409);
     }
 
-    public function show(Vehicle $vehicle)
-    {
-        //
+    public function showByLicense($license) {
+        return Vehicle::where('lice_plate', $license)->first();
     }
 
-    public function update(Request $request, Vehicle $vehicle)
-    {
-        //
-    }
 
     public function destroy(Vehicle $vehicle)
     {
