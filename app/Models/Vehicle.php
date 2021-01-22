@@ -15,6 +15,10 @@ class Vehicle extends Model
     public $incrementing = false;
     protected $keyType = 'string';
 
+    public function getBrandAttribute($value) {
+        return ucfirst($value);
+    }
+
     public function owner() {
         return $this->belongsTo(Owner::class, 'owner_id', 'identity_card');
     }

@@ -15,7 +15,7 @@ class VehicleController extends Controller
     }
 
     public function countBrands() {
-        
+        return Vehicle::select(['brand', 'amount' => Vehicle::selectRaw('COUNT(lice_plate)')])->get();
     }
 
     public function store(Request $request)
