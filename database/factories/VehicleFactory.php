@@ -15,7 +15,8 @@ class VehicleFactory extends Factory
         return [
             'lice_plate' => $this->faker->creditCardNumber(),
             'brand' => $this->faker->word(),
-            'type' => $this->faker->colorName()
+            'type' => $this->faker->colorName(),
+            'owner_id' => Owner::factory()
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Owner;
 use Illuminate\Database\Seeder;
 
 class OwnerSeeder extends Seeder
@@ -13,6 +14,6 @@ class OwnerSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Owner::factory()->count(6)->create();
     }
 }
