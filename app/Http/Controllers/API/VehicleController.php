@@ -4,10 +4,11 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Vehicle\StoreVehicleRequest;
+use App\Http\Resources\Vehicle\VehicleCountResource;
 use App\Http\Resources\Vehicle\VehicleResource;
 use App\Models\Owner;
 use App\Models\Vehicle;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class VehicleController extends Controller
 {
@@ -17,8 +18,9 @@ class VehicleController extends Controller
         return VehicleResource::collection(Vehicle::all());
     }
 
-    public function countBrands() {
-        return Vehicle::select(['brand', 'amount' => Vehicle::selectRaw('COUNT(lice_plate)')])->get();
+    public function countBrands()
+    {
+        return VehicleCountResource::collection(DB::table('vehicles')->select(DB::raw('count(brand) as amount, brand'))->groupBy('brand')->get());
     }
 
     public function store(StoreVehicleRequest $request)
@@ -41,7 +43,8 @@ class VehicleController extends Controller
         return response()->json(['message' => 'Vehicle already exists'], 409);
     }
 
-    public function showByLicense($license) {
+    public function showByLicense($license)
+    {
         return new VehicleResource(Vehicle::where('lice_plate', $license)->first());
     }
 }
