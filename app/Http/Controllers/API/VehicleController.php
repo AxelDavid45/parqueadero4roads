@@ -47,4 +47,8 @@ class VehicleController extends Controller
     {
         return new VehicleResource(Vehicle::where('lice_plate', $license)->first());
     }
+
+    public function destroy(Vehicle $id) {
+
+    }
 }
