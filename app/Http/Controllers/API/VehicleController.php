@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Vehicle\StoreVehicleRequest;
+use App\Http\Resources\Vehicle\VehicleResource;
 use App\Models\Owner;
 use App\Models\Vehicle;
 use Illuminate\Http\Request;
@@ -13,7 +14,7 @@ class VehicleController extends Controller
 
     public function index()
     {
-        return Vehicle::all();
+        return VehicleResource::collection(Vehicle::all());
     }
 
     public function countBrands() {
@@ -41,12 +42,6 @@ class VehicleController extends Controller
     }
 
     public function showByLicense($license) {
-        return Vehicle::where('lice_plate', $license)->first();
-    }
-
-
-    public function destroy(Vehicle $vehicle)
-    {
-        //
+        return new VehicleResource(Vehicle::where('lice_plate', $license)->first());
     }
 }

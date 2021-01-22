@@ -18,6 +18,7 @@ use \App\Http\Controllers\API\OwnerController;
 Route::prefix('vehicle')->group(function () {
     Route::get('/brand', [VehicleController::class, 'countBrands']);
     Route::post('/', [VehicleController::class, 'store']);
+    Route::get('/', [VehicleController::class, 'index']);
     Route::get('/{licensePlate}', [VehicleController::class, 'showByLicense']);
     Route::get('/owner/{name}', [OwnerController::class, 'showByName']);
     Route::get('/owner/identity/{identity}', [OwnerController::class, 'showByIdentity']);
