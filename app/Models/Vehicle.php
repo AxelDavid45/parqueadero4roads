@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Vehicle extends Model
 {
     use HasFactory;
+
+    protected $guarded  = [];
+
+    protected $primaryKey = 'lice_plate';
+    public $incrementing = false;
+    protected $keyType = 'string';
+
+    public function owner() {
+        return $this->belongsTo(Owner::class, 'owner_id', 'identity_card');
+    }
 }

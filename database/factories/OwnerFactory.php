@@ -22,7 +22,8 @@ class OwnerFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'identity_card' => $this->faker->creditCardNumber(),
+            'name' => $this->faker->name,
         ];
     }
 }
