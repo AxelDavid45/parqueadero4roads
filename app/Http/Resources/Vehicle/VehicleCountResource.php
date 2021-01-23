@@ -9,7 +9,7 @@ class VehicleCountResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'marca' => $this->brand,
+            'marca' => ucfirst($this->brand),
             'cantidad' => $this->amount
         ];
     }
